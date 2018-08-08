@@ -1,0 +1,26 @@
+language: objective-c
+os: osx
+
+before_install:
+- chmod a+x ./Scripts/install.sh
+- chmod a+x ./Scripts/build.sh
+
+install:
+- ./Scripts/install.sh
+
+script:
+- ./Scripts/build.sh $(echo $TRAVIS_REPO_SLUG | cut -d/ -f2)-$TRAVIS_TAG
+
+before_deploy:
+- git config --global user.email "github@travis-ci.org"
+- git config --global user.name "Travis CI"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: oDXlqKiUSVGOk+vzKF4C84bbJQvBBUJEDN+IDhkCjCDxBfot7YQm7GuKjJXEFtehmOsu/ZsB4eX8JU4T7V6GKmsarkVJN1hBVz06jlk9QJ3Nn6fMePkXpnxE2D5GkjZu1SOwakOp7/myNrdM7caNJ4yfjU8DMejnjzbrVtcYgRa5GgH+1XVNqBVL9E2XmGG1AOx0w64xUOOjDq5vGhU1AEDPKJLtY6932EQ7SgGVAFTIrRqjw3K7rKk9jzAXvg1GZA3CugpTp71EgYask/+2QGJqag9SSzbiXPcGNUVd4FSbz5uvxC2JYD6RgCEucWsZxn6ISnGZMpHJg2b8roR6w8E0CbepCTf32EuG6i9JyllFX0ahg7PwRRGEj8Wjc6bAoSIIqtLUWSLzy6f1R21cBSjZQ+rZ8kSP6G0Moy+ZCuaTaprUGordK5NGuYtPL1d3bEL19HibDBNXvy9zffxs9ltF0FtkUcyHzsaxTNXt8BkZbqcL6SKLkMMKBWfB2bWot+aiArC93tt5I9l2YDoIIwfNboE2imd5Juph7ErZ254npSquxd+jzBLPY+CLeJf0W5vsST3wKq2Gnywean51Kf+SGFqCSYYP4ymgfLoTrS8kZ9No4d2OBe0wUr0VScNx8ODW8TimZ5oU1A0pvaDrmmHwf90Zv+deKr1nSTWI1cw=
+  file_glob: true
+  file: ./Build/**/*
+  skip_cleanup: true
+  on:
+    tags: true

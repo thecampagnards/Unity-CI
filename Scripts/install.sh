@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 BASE_URL=http://netstorage.unity3d.com/unity
 # Get version from project

@@ -2,7 +2,7 @@
 
 BASE_URL=http://netstorage.unity3d.com/unity
 # Get version from project
-VERSION=`cat $(pwd)/../ProjectSettings/ProjectVersion.txt | cut -d' ' -f2`
+VERSION=`cat $(pwd)/ProjectSettings/ProjectVersion.txt | cut -d' ' -f2`
 # Find hash on the html of the unity archives
 tmp=$(curl -s -i -X GET https://unity3d.com/fr/get-unity/download/archive)
 re="https:\/\/netstorage\.unity3d\.com\/unity\/(.+?)\/MacEditorInstaller\/Unity-$VERSION\.pkg"

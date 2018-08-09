@@ -9,6 +9,9 @@ echo $VERSION
 tmp=$(curl -s -i -X GET https://unity3d.com/fr/get-unity/download/archive)
 re="https:\/\/netstorage\.unity3d\.com\/unity\/(.+?)\/MacEditorInstaller\/Unity-$VERSION\.pkg"
 
+echo $tmp
+echo $re
+
 if [[ $tmp =~ $re ]]; then
     HASH=${BASH_REMATCH[1]}
 else

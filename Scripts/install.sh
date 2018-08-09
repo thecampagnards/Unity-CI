@@ -1,8 +1,10 @@
 #! /bin/sh
 
 BASE_URL=http://netstorage.unity3d.com/unity
+WORKING_DIR=$(pwd)
 # Get version from project
-VERSION=`cat $(pwd)/../ProjectSettings/ProjectVersion.txt | cut -d' ' -f2`
+VERSION=$(cut -d' ' -f2 < "$WORKING_DIR"/../ProjectSettings/ProjectVersion.txt)
+echo $VERSION
 # Find hash on the html of the unity archives
 tmp=$(curl -s -i -X GET https://unity3d.com/fr/get-unity/download/archive)
 re="https:\/\/netstorage\.unity3d\.com\/unity\/(.+?)\/MacEditorInstaller\/Unity-$VERSION\.pkg"
@@ -17,19 +19,19 @@ fi
 echo "version:$VERSION - hash:$HASH"
 
 download() {
-  file=$1
+  package=$1
   url="$BASE_URL/$HASH/$package"
 
   echo "Downloading from $url: "
-  curl -o `basename "$package"` "$url"
+  curl -o $(basename "$package") "$url"
 }
 
 install() {
   package=$1
   download "$package"
 
-  echo "Installing "`basename "$package"`
-  sudo installer -dumplog -package `basename "$package"` -target /
+  echo "Installing "$(basename "$package")
+  sudo installer -dumplog -package $(basename "$package") -target /
 }
 
 # See $BASE_URL/$HASH/unity-$VERSION-$PLATFORM.ini for complete list

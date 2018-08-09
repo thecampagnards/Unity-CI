@@ -9,6 +9,7 @@ install:
 - ./Scripts/install.sh
 
 script:
+- ./Scripts/test.sh
 - ./Scripts/build.sh $(echo $TRAVIS_REPO_SLUG | cut -d/ -f2)-$TRAVIS_TAG
 
 before_deploy:

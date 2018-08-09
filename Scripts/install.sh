@@ -1,9 +1,9 @@
-#! /bin/sh
+#! /bin/bash
 
 BASE_URL=http://netstorage.unity3d.com/unity
 WORKING_DIR=$(pwd)
 # Get version from project
-VERSION=$(cut -d' ' -f2 < "$WORKING_DIR"/../ProjectSettings/ProjectVersion.txt)
+VERSION=$(cut -d' ' -f2 < "$WORKING_DIR"/ProjectSettings/ProjectVersion.txt)
 echo $VERSION
 # Find hash on the html of the unity archives
 tmp=$(curl -s -i -X GET https://unity3d.com/fr/get-unity/download/archive)

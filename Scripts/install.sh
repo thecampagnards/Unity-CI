@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 BASE_URL=http://netstorage.unity3d.com/unity
 WORKING_DIR=$(pwd)
@@ -9,15 +9,13 @@ echo $VERSION
 tmp=$(curl -s -i -X GET https://unity3d.com/fr/get-unity/download/archive)
 re="https:\/\/netstorage\.unity3d\.com\/unity\/(.+?)\/MacEditorInstaller\/Unity-$VERSION\.pkg"
 
-echo $tmp
-echo $re
-
-if [[ $tmp =~ $re ]]; then
-    HASH=${BASH_REMATCH[1]}
-else
-    echo "No version found"
-    exit 1
-fi
+HASH=c18cef34cbcd
+#if [[ $tmp =~ $re ]]; then
+#    HASH=${BASH_REMATCH[1]}
+#else
+#    echo "No version found"
+#    exit 1
+#fi
 
 echo "version:$VERSION - hash:$HASH"
 

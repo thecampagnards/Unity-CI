@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 echo "Attempting to test"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
